@@ -21,16 +21,28 @@
   },
   "homepage": "https://github.com/ROHANBAIRAGI123/projectAlumini#readme",
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.8",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.1",
+    "@types/morgan": "^1.9.9",
+    "@types/node": "^22.13.14",
+    "@types/winston": "^2.4.4",
     "typescript": "^5.8.2"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cloudinary": "^2.6.0",
     "concurrently": "^9.1.2",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.13.0",
-    "nodemon": "^3.1.9"
+    "morgan": "^1.10.0",
+    "mysql2": "^3.14.0",
+    "nodemon": "^3.1.9",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
   }
 }
