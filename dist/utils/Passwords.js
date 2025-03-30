@@ -12,12 +12,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.healthCheckController = void 0;
-const ApiResponse_1 = __importDefault(require("../utils/ApiResponse"));
-const asyncHandler_1 = __importDefault(require("../utils/asyncHandler"));
-const logger_1 = __importDefault(require("../utils/logger"));
-const healthCheckController = (0, asyncHandler_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    logger_1.default.info("Health check successful", req, res);
-    res.status(200).json(new ApiResponse_1.default(201, "Health check successful"));
-}));
-exports.healthCheckController = healthCheckController;
+exports.comparePassword = exports.encryptedPassword = void 0;
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const ApiError_1 = __importDefault(require("./ApiError"));
+const encryptedPassword = (password) => __awaiter(void 0, void 0, void 0, function* () {
+    if (password) {
+        const newPassword = yield bcrypt_1.default.hash(password, 10);
+        return newPassword;
+    }
+    else {
+        throw new ApiError_1.default(400, "password is required");
+    }
+});
+exports.encryptedPassword = encryptedPassword;
+const comparePassword = (password, encryptedPassword) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield bcrypt_1.default.compare(password, encryptedPassword);
+    return result;
+});
+exports.comparePassword = comparePassword;

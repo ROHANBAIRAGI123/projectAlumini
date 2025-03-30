@@ -28,14 +28,15 @@ app.use((0, cors_1.default)({
     origin: process.env.CORS_ORIGIN,
     credentials: true,
 }));
+const healthCheck_routers_1 = __importDefault(require("./routers/healthCheck.routers"));
+const UserRegistration_routers_1 = __importDefault(require("./routers/UserRegistration.routers"));
 // Express middlewares
 app.use(express_1.default.json({ limit: "16kb" }));
 app.use(express_1.default.urlencoded({ limit: "16kb", extended: true }));
 app.use(express_1.default.static("public"));
 app.use((0, cookie_parser_1.default)());
-logger_1.default.error("middlewares running successfully");
 //Routes
-const healthCheck_routers_1 = __importDefault(require("./routers/healthCheck.routers"));
 app.use("/api/v1/health", healthCheck_routers_1.default);
+app.use("/api/v1/users", UserRegistration_routers_1.default);
 //Error handlers
 exports.default = app;

@@ -30,6 +30,8 @@ app.use(
     credentials: true,
   })
 );
+import healthCheckRouter from "./routers/healthCheck.routers";
+import UserRouter from "./routers/UserRegistration.routers";
 
 // Express middlewares
 app.use(express.json({ limit: "16kb" }));
@@ -37,11 +39,9 @@ app.use(express.urlencoded({ limit: "16kb", extended: true }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-logger.error("middlewares running successfully");
-
 //Routes
-import healthCheckRouter from "./routers/healthCheck.routers";
 app.use("/api/v1/health", healthCheckRouter);
+app.use("/api/v1/users", UserRouter);
 
 //Error handlers
 
