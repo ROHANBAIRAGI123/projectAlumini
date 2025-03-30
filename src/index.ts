@@ -1,13 +1,18 @@
 import dotenv from "dotenv";
 import app from "./app";
 import logger from "./utils/logger";
-
 dotenv.config({
   path: "./.env",
+  debug: true,
 });
 
-const port = process.env.PORT || 8001;
+const PORT = process.env.PORT || 8001;
 
-app.listen(port, () => {
-  logger.info(`Server running on port: ${port}...`);
-});
+try {
+  app.listen(PORT, () => {
+    logger.info(`Server running on port ${PORT}`);
+  });
+} catch (error) {
+  logger.error("Application failed to start:", error);
+  process.exit(1);
+}

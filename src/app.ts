@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import logger from "./utils/logger";
@@ -32,6 +32,7 @@ app.use(
 );
 import healthCheckRouter from "./routers/healthCheck.routers";
 import UserRouter from "./routers/UserRegistration.routers";
+import ApiError from "./utils/ApiError";
 
 // Express middlewares
 app.use(express.json({ limit: "16kb" }));
@@ -44,5 +45,10 @@ app.use("/api/v1/health", healthCheckRouter);
 app.use("/api/v1/users", UserRouter);
 
 //Error handlers
+app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  console.log("Error", err);
+  res.status(err.status || 500);
+  res.json(new ApiError(err.status || 500, err.message));
+});
 
 export default app;
