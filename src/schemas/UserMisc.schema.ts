@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// UserMisc for validation
 export const userMiscSchema = z.object({
   branch: z.string().optional(),
   achievement: z
@@ -12,4 +13,5 @@ export const userMiscSchema = z.object({
   coverImage: z.string().optional(),
   hideContact: z.boolean().optional(),
   refreshToken: z.string().optional(),
+  expiresAt: z.date().optional(),
 });

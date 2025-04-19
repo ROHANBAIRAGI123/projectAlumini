@@ -18,7 +18,7 @@ class UserInfo {
   // find by email
   static async findByEmail(email: string) {
     const [result] = await pool.query(
-      "select fname,lname,email,role,graduationYear,contact from User_Info where email = ?",
+      "select fname,lname,email,role,graduationYear,contact,password from User_Info where email = ?",
       [email]
     );
     return result;

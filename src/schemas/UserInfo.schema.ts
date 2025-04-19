@@ -1,5 +1,6 @@
 import { z } from "zod";
 
+// UserInfo for validation
 export const userInfoSchema = z.object({
   fname: z.string({ required_error: "Firstname is required" }).min(3, {
     message: "Firstname must be at least 3 characters long",
@@ -7,6 +8,7 @@ export const userInfoSchema = z.object({
   lname: z.string({ required_error: "Lastname is required" }).min(3, {
     message: "Lastname must be at least 3 characters long",
   }),
+  // role: z.enum(["student", "alumni", "admin"]), would be computed by graduationYear
   graduationYear: z
     .number({ required_error: "GraduationYear is required" })
     .int(),

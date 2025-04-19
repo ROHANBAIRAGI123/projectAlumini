@@ -11,7 +11,7 @@ CREATE TABLE User_Info (
     achievement TEXT
 );
 
--- User Misclannous Info
+-- User Misclaneous Info
 CREATE TABLE User_Misc (
     id INT PRIMARY KEY AUTO_INCREMENT,
     branch VARCHAR(50),
@@ -20,6 +20,7 @@ CREATE TABLE User_Misc (
     coverImage VARCHAR(255),
     hideContact BOOLEAN,
     RefreshToken VARCHAR(255),
+    expiresAt DATETIME,
     FOREIGN KEY (id) REFERENCES User_Info(id) ON DELETE CASCADE
 );
 

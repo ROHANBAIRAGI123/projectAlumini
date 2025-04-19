@@ -2,7 +2,7 @@ import { v2 as cloudinary } from "cloudinary";
 import fs from "fs";
 import logger from "./logger";
 import dotenv from "dotenv";
-
+//without this unable to access .env
 dotenv.config();
 
 cloudinary.config({
@@ -12,11 +12,6 @@ cloudinary.config({
 });
 
 const uploadOnCloudinary = async (localFilePath: string) => {
-  console.log(
-    process.env.CLOUDINARY_CLOUD_NAME,
-    process.env.CLOUDINARY_API_KEY,
-    process.env.CLOUDINARY_API_SECRET
-  );
   try {
     if (!localFilePath) {
       logger.warn("No local file path provided to uploadOnCloudinary");
@@ -34,6 +29,7 @@ const uploadOnCloudinary = async (localFilePath: string) => {
     fs.unlinkSync(localFilePath);
     return response;
   } catch (error) {
+    // Delete the local file
     if (localFilePath && fs.existsSync(localFilePath)) {
       fs.unlinkSync(localFilePath);
     }
